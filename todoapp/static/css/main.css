@@ -11,3 +11,29 @@ body{
     color: #ffffff;
     padding: 10px;
 }
+
+.todo-input-container{
+    margin-top: 20px;
+}
+
+.todo-input-container .input-group{
+    margin: 20px auto 40px auto;
+}
+
+.todo-item{
+    margin-top: 20px;
+    background: #F3F3F3;
+    border: 1px solid #C1C1C1;
+    min-height: 160px;
+    font-size: 24px;
+    padding: 10px;
+    width: 46%;
+    float: left;
+    margin-left: 2%;
+    font-weight: 300;
+    position: relative;
+}
+
+.btn-show-completed{
+    margin-right: 2%;
+}
