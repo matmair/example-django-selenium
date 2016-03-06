@@ -2,6 +2,10 @@ body{
     padding-bottom: 20px;
 }
 
+.landing{
+    margin-top: 60px;
+}
+
 .container.todo-container{
     width: 750px;
 }
@@ -82,4 +86,8 @@ body{
 
 .todo-item.completed .complete-bar{
     color: #5cb85c;
+}
+
+.content {
+    margin-top: 20px;
 }
