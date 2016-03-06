@@ -1,15 +1,18 @@
-from django.contrib.auth.forms import AuthenticationForm
 from accounts.forms import UserRegistrationForm
+from django.contrib.auth import login, authenticate
+from django.core.urlresolvers import reverse_lazy
 from django.views.generic import FormView
-
-
-class UserLoginView(FormView):
-    template_name = "accounts/login.html"
-    form_class = AuthenticationForm
-    success_url = "/"
 
 
 class UserRegistrationView(FormView):
     template_name = "accounts/register.html"
     form_class = UserRegistrationForm
-    success_url = "/"
+    success_url = reverse_lazy("todos:active")
+
+    def form_valid(self, form):
+        form.save()
+        auth_user = authenticate(username=form.data.get("username"), password=form.data.get("password1"))
+        if auth_user is not None:
+            login(self.request, auth_user)
+        return super(UserRegistrationView, self).form_valid(form)
+
