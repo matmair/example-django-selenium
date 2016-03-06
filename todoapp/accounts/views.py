@@ -7,7 +7,7 @@ from django.views.generic import FormView
 class UserRegistrationView(FormView):
     template_name = "accounts/register.html"
     form_class = UserRegistrationForm
-    success_url = reverse_lazy("todos:active")
+    success_url = reverse_lazy("todos:active_list")
 
     def form_valid(self, form):
         form.save()
