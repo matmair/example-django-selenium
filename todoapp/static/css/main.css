@@ -88,6 +88,11 @@ body{
     color: #5cb85c;
 }
 
-.content {
+.content{
+    display: block;
+    margin-top: 20px;
+}
+
+.margin-top-20{
     margin-top: 20px;
 }

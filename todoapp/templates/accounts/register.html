@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Sign Up{% endblock title %}
+{% block page_title %}Sign Up{% endblock page_title %}
+
+{% block content %}
+    <form action="{% url "accounts:register" %}" method="post" id="user-registration">
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary margin-top-20" id="user-registration-submit">Submit</button>
+    </form>
+{% endblock content %}
