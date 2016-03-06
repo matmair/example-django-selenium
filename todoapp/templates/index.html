@@ -7,8 +7,11 @@
 {% block content %}
     <div class="col-lg-12 text-center landing">
 
-        <h2>Todos</h2>
         <h3 class="text-success">It’s free and always will be.</h3>
-        <p><a href="" id="id-sign-up" class="btn btn-lg btn-primary">Sign Up</a></p>
+        <br>
+        <p>
+            <a href="{% url "accounts:register" %}" id="id-sign-up" class="btn btn-lg btn-primary">Register</a>
+            <a href="{% url "accounts:login" %}" id="id-sign-in" class="btn btn-lg btn-info">Log in</a>
+        </p>
     </div>
 {% endblock content %}

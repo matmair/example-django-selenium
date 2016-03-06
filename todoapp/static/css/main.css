@@ -2,8 +2,21 @@ body{
     padding-bottom: 20px;
 }
 
+.logo{
+    color: #ffffff;
+}
+
+.logo:hover{
+    text-decoration: none;
+    color: #dbdbdb;
+}
+
 .landing{
     margin-top: 60px;
+}
+
+.landing .btn{
+    margin-left: 10px;
 }
 
 .container.todo-container{

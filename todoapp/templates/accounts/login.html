@@ -2,4 +2,11 @@
 
 {% block title %}Profile Login{% endblock %}
 
-{% block page_title %}Profile Login{% endblock %}
+{% block page_title %}Log In{% endblock %}
+
+{% block content %}
+        <form action="{% url "accounts:login" %}" method="post" id="user-login-form">
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-info margin-top-20" id="user-registration-submit">Log In</button>
+    </form>
+{% endblock content %}
