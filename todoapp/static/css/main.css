@@ -1,0 +1,13 @@
+body{
+    padding: 10px;
+}
+
+.container.todo-container{
+    width: 750px;
+}
+
+.header{
+    background: #687ac2;
+    color: #ffffff;
+    padding: 10px;
+}
