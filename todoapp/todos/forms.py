@@ -6,4 +6,4 @@ class TodoCreateForm(forms.ModelForm):
 
     class Meta:
         model = Todo
-        fields = ("name", )
+        fields = ("text", )
