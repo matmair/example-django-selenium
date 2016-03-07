@@ -4,3 +4,4 @@
     <a href="{% url "todos:completed_list" %}"
        class="btn btn-link btn-completed-todo {% if view.tab_name == "completed" %}active{% endif %}">Completed</a>
 </div>
+<div class="todos-count text-right"><strong id="id_todos_count">{{ todos.count }}</strong> Tasks</div>

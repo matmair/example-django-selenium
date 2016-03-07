@@ -125,3 +125,7 @@ body{
 .profile-text:hover a{
     color: #dbdbdb;
 }
+
+.todos-count{
+    margin-right: 4%;
+}
