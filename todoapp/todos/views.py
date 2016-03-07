@@ -7,21 +7,23 @@ from todos.models import Todo
 
 class TodoActiveListView(LoginRequiredMixin, TemplateView):
     template_name = "todos/active_list.html"
+    tab_name = "active"
 
     def get_context_data(self, **kwargs):
         kwargs["todos"] = Todo.objects.filter(done=False)
         return super(TodoActiveListView, self).get_context_data(**kwargs)
 
 
-class TodoCompletedListView(TemplateView):
+class TodoCompletedListView(LoginRequiredMixin, TemplateView):
     template_name = "todos/completed_list.html"
+    tab_name = "completed"
 
     def get_context_data(self, **kwargs):
         kwargs["todos"] = Todo.objects.filter(done=True)
         return super(TodoCompletedListView, self).get_context_data(**kwargs)
 
 
-class TodoCreateView(FormView):
+class TodoCreateView(LoginRequiredMixin, FormView):
     form_class = TodoCreateForm
     success_url = reverse_lazy("todos:active_list")
 

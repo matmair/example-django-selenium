@@ -1,4 +1,6 @@
 <div class="col-lg-12 text-center tab-container">
-    <a href="{% url "todos:active_list" %}" class="btn btn-link btn-active-todo ">Active</a>
-    <a href="{% url "todos:completed_list" %}" class="btn btn-link btn-completed-todo">Completed</a>
+    <a href="{% url "todos:active_list" %}"
+       class="btn btn-link btn-active-todo {% if view.tab_name == "active" %}active{% endif %}">Active</a>
+    <a href="{% url "todos:completed_list" %}"
+       class="btn btn-link btn-completed-todo {% if view.tab_name == "completed" %}active{% endif %}">Completed</a>
 </div>
