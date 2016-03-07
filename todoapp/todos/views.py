@@ -1,6 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.urlresolvers import reverse_lazy
-from django.views.generic import TemplateView, FormView
+from django.http import HttpResponse
+from django.views.generic import TemplateView, FormView, View
 from todos.forms import TodoCreateForm
 from todos.models import Todo
 
@@ -33,4 +34,15 @@ class TodoCreateView(LoginRequiredMixin, FormView):
         return super(TodoCreateView, self).form_valid(form)
 
 
+class TodoToggleCompleteAjaxView(View):
 
+    def post(self, request, *args, **kwargs):
+        todo_id = request.POST.get("todo-id", -1)
+        try:
+            todo = Todo.objects.get(id=todo_id)
+        except Todo.DoesNotExist:
+            return HttpResponse(status=404)
+
+        todo.done = not todo.done
+        todo.save()
+        return HttpResponse(status=200)

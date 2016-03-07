@@ -23,12 +23,14 @@
             {% endif %}
         </div>
     </div>
-        <h4 class="page-title">{% block page_title %}{% endblock %}</h4>
-        <div class="content">
-            {% block content %}
+    <h4 class="page-title">{% block page_title %}{% endblock %}</h4>
+    <div class="content">
+        {% block content %}
 
-            {% endblock content %}
-        </div>
+        {% endblock content %}
+    </div>
 </div>
+    {% block javascripts %}
+    {% endblock javascripts %}
 </body>
 </html>

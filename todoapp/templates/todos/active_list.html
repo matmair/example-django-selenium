@@ -4,6 +4,25 @@
 
 {% block page_title %}Todos{% endblock %}
 
+{% block javascripts %}
+    <script type="text/javascript">
+        $(function(){
+            $(".todo-item-bottom").on("click", function(e){
+                var elem = $(e.target);
+                var todo_id = $(e.target).closest(".todo-item-bottom").data("todo-item-id");
+                $.ajax({
+                    url: "{% url "todos:done" %}",
+                    type: "post",
+                    data: {"todo-id": todo_id, "csrfmiddlewaretoken": "{{ csrf_token }}"},
+                    success: function(data){
+                        elem.closest(".todo-item").addClass("completed");
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock javascripts %}
+
 {% block content %}
 
     {% include "todos/add_todo_form.html" %}
@@ -18,7 +37,7 @@
         </div>
     {% empty %}
         <div class="col-lg-12 text-center margin-top-20">
-            <h4>Can't find any todos here!</h4>
+            <h4>Can't find active any todos here!</h4>
         </div>
     {% endfor %}
 
