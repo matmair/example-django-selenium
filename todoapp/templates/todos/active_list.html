@@ -15,7 +15,7 @@
                     type: "post",
                     data: {"todo-id": todo_id, "csrfmiddlewaretoken": "{{ csrf_token }}"},
                     success: function(data){
-                        elem.closest(".todo-item").addClass("completed");
+                        elem.closest(".todo-item").toggleClass("completed");
                     }
                 });
             });
