@@ -16,9 +16,3 @@ class MySeleniumTests(StaticLiveServerTestCase):
 
     def setUp(self):
         super(MySeleniumTests, self).setUp()
-
-    def test_login(self):
-        self.browser.get(self.live_server_url)
-        self.browser.find_element_by_xpath('//input[@type="text"]').click()
-        self.browser.find_element_by_xpath('//a').click()
-
