@@ -6,7 +6,7 @@ from django.utils.encoding import smart_unicode
 from django.utils.translation import ugettext_lazy as _
 
 
-class ToDo(models.Model):
+class Todo(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
     name = models.CharField(_("Name"), max_length=255)
     done = models.BooleanField(_("Done"), default=False)
