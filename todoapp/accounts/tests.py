@@ -2,17 +2,21 @@ from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium import webdriver
 
 
-class MySeleniumTests(StaticLiveServerTestCase):
+class UserRegistrationSeleniumTestCase(StaticLiveServerTestCase):
 
     @classmethod
     def setUpClass(cls):
-        super(MySeleniumTests, cls).setUpClass()
+        super(UserRegistrationSeleniumTestCase, cls).setUpClass()
         cls.browser = webdriver.Firefox()
 
     @classmethod
     def tearDownClass(cls):
         cls.browser.quit()
-        super(MySeleniumTests, cls).tearDownClass()
+        super(UserRegistrationSeleniumTestCase, cls).tearDownClass()
 
     def setUp(self):
-        super(MySeleniumTests, self).setUp()
+        super(UserRegistrationSeleniumTestCase, self).setUp()
+
+    def test_registration(self):
+        self.browser.find_element_by_id("id-sign-up")
+        # self.driver.type_in('input#id_query', 'search something')
