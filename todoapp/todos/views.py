@@ -11,7 +11,7 @@ class TodoActiveListView(LoginRequiredMixin, TemplateView):
     tab_name = "active"
 
     def get_context_data(self, **kwargs):
-        kwargs["todos"] = Todo.objects.filter(done=False)
+        kwargs["todos"] = Todo.objects.filter(user=self.request.user, done=False)
         return super(TodoActiveListView, self).get_context_data(**kwargs)
 
 
@@ -20,7 +20,7 @@ class TodoCompletedListView(LoginRequiredMixin, TemplateView):
     tab_name = "completed"
 
     def get_context_data(self, **kwargs):
-        kwargs["todos"] = Todo.objects.filter(done=True)
+        kwargs["todos"] = Todo.objects.filter(user=self.request.user, done=True)
         return super(TodoCompletedListView, self).get_context_data(**kwargs)
 
 
