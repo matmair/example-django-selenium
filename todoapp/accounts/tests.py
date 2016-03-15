@@ -12,7 +12,10 @@ class UserRegistrationSeleniumTestCase(StaticLiveServerTestCase):
     def tearDown(self):
         self.browser.quit()
 
-    def test_registration(self):
+    def test_user_registration(self):
         self.browser.find_element_by_id("id-register").click()
-        self.browser.stop_client()
-        # self.driver.type_in('input#id_query', 'search something')
+        self.browser.find_element_by_id("id_username").send_keys("erdem12")
+        self.browser.find_element_by_id("id_email").send_keys("erdem12@erdem.com")
+        self.browser.find_element_by_id("id_password1").send_keys("cd89c9270")
+        self.browser.find_element_by_id("id_password2").send_keys("cd89c9270")
+        self.browser.find_element_by_id("user-registration-submit").click()
