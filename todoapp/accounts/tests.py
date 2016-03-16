@@ -1,5 +1,6 @@
 from datetime import datetime
 from django.conf import settings
+from django.contrib.auth.models import User
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 import os
 from selenium import webdriver
@@ -13,6 +14,7 @@ class UserRegistrationSeleniumTestCase(StaticLiveServerTestCase):
         super(UserRegistrationSeleniumTestCase, self).setUp()
         self.browser = webdriver.Firefox()
         self.browser.get(self.live_server_url)
+        self.user = User.objects.create_user(username="erdem", password="123123", email="erdem@erdem.com")
 
     def tearDown(self):
         self.browser.quit()
@@ -38,3 +40,10 @@ class UserRegistrationSeleniumTestCase(StaticLiveServerTestCase):
         self.browser.find_element_by_id("id_password1").send_keys("cd89c9270")
         self.browser.find_element_by_id("id_password2").send_keys("cd89c9270")
         self.browser.find_element_by_id("user-registration-submit").click()
+
+    def test_user_login(self):
+        self.browser.find_element_by_id("id-login").click()
+        self.take_screenshot()
+        self.browser.find_element_by_id("id_username").send_keys("erdem")
+        self.browser.find_element_by_id("id_password").send_keys("123123")
+        self.browser.find_element_by_id("user-login-submit").click()
