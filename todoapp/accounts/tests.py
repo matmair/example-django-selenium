@@ -1,4 +1,5 @@
 from datetime import datetime
+import shutil
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
@@ -35,11 +36,14 @@ class UserRegistrationSeleniumTestCase(StaticLiveServerTestCase):
     def test_user_registration(self):
         self.browser.find_element_by_id("id-register").click()
         self.take_screenshot()
-        self.browser.find_element_by_id("id_username").send_keys("erdem12")
-        self.browser.find_element_by_id("id_email").send_keys("erdem12@erdem.com")
-        self.browser.find_element_by_id("id_password1").send_keys("cd89c9270")
-        self.browser.find_element_by_id("id_password2").send_keys("cd89c9270")
+        username = "newuser"
+        self.browser.find_element_by_id("id_username").send_keys(username)
+        self.browser.find_element_by_id("id_email").send_keys("newuser@email.com")
+        self.browser.find_element_by_id("id_password1").send_keys("Psiph5sK")
+        self.browser.find_element_by_id("id_password2").send_keys("Psiph5sK")
         self.browser.find_element_by_id("user-registration-submit").click()
+        self.assertEqual(username, self.browser.find_element_by_id("username-text").text)
+        self.take_screenshot()
 
     def test_user_login(self):
         self.browser.find_element_by_id("id-login").click()
