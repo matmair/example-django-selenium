@@ -5,14 +5,13 @@ from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium import webdriver
 
 
-class UserRegistrationSeleniumTestCase(StaticLiveServerTestCase, SeleniumScreenShotMixin):
+class UserRegistrationSeleniumTestCase(SeleniumScreenShotMixin, StaticLiveServerTestCase):
 
     def setUp(self):
         self.browser = webdriver.Firefox()
         self.browser.get(self.live_server_url)
 
     def tearDown(self):
-        self.take_screenshot()
         self.browser.quit()
 
     def test_user_registration(self):
