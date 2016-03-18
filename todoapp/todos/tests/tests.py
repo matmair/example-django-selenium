@@ -32,7 +32,7 @@ class CreateActiveTodoSeleniumTestCase(StaticLiveServerTestCase):
         self.assertEqual(int(active_todo_count), 1)
 
 
-class CompleteTodoSeleniumTestCase(StaticLiveServerTestCase):
+class TodoActionSeleniumTestCase(StaticLiveServerTestCase):
 
     def setUp(self):
         self.user = User.objects.create_user("todo_man", "todo@man.com", "ThiSk4Zu")
@@ -63,3 +63,10 @@ class CompleteTodoSeleniumTestCase(StaticLiveServerTestCase):
         user_completed_todo_count = Todo.objects.filter(user=self.user, done=True).count()
         todo_count_in_html_elem = self.browser.find_element_by_id("id_todos_count").text
         self.assertEqual(int(todo_count_in_html_elem), user_completed_todo_count)
+
+        user_completed_todo = Todo.objects.filter(user=self.user, done=True).first()
+        self.browser.find_element_by_id("todo-active-action-%s" % user_completed_todo.id).click()
+        self.browser.get('%s%s' % (self.live_server_url, reverse_lazy("todos:active_list")))
+        user_active_todo_count = Todo.objects.filter(user=self.user, done=False).count()
+        todo_count_in_html_elem = self.browser.find_element_by_id("id_todos_count").text
+        self.assertEqual(int(todo_count_in_html_elem), user_active_todo_count)
