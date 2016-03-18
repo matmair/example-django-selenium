@@ -1,9 +1,10 @@
-from datetime import datetime
-from accounts.tests.constants import SCREENSHOT_DUMP_LOCATION
 import os
+from datetime import datetime
+import sys
+from accounts.tests.constants import SCREENSHOT_DUMP_LOCATION
 
 
-class SeleniumScreenShotMixin():
+class SeleniumScreenShotMixin(object):
 
     def take_screenshot(self):
         filename = self.get_filename()
@@ -18,15 +19,7 @@ class SeleniumScreenShotMixin():
             timestamp=timestamp
         )
 
-    @property
-    def failureException(self):
-        # http://stackoverflow.com/questions/12290336/how-to-execute-code-only-on-test-failures-with-python-unittest2
-        class MyFailureException(AssertionError):
-            def __init__(self_, *args, **kwargs):
-                screenshot_dir = 'reports/screenshots'
-                if not os.path.exists(screenshot_dir):
-                    os.makedirs(screenshot_dir)
-                self.take_screenshot()
-                return super(MyFailureException, self_).__init__(*args, **kwargs)
-        MyFailureException.__name__ = AssertionError.__name__
-        return MyFailureException
+    def tearDown(self):
+        if sys.exc_info()[0]:  # Returns the info of exception being handled
+            self.take_screenshot()
+        self.browser.quit()

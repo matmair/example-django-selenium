@@ -1,3 +1,4 @@
+from accounts.tests.mixins import SeleniumScreenShotMixin
 from django.contrib.auth.models import User
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from django.core.urlresolvers import reverse_lazy
@@ -6,7 +7,7 @@ from selenium import webdriver
 from todos.models import Todo
 
 
-class CreateActiveTodoSeleniumTestCase(StaticLiveServerTestCase):
+class CreateActiveTodoSeleniumTestCase(SeleniumScreenShotMixin, StaticLiveServerTestCase):
 
     def setUp(self):
         user = User.objects.create_user("todo_man", "todo@man.com", "ThiSk4Zu")
@@ -14,9 +15,6 @@ class CreateActiveTodoSeleniumTestCase(StaticLiveServerTestCase):
         user.save()
         self.browser = webdriver.Firefox()
         self.browser.get(self.live_server_url)
-
-    def tearDown(self):
-        self.browser.quit()
 
     def login(self):
         self.browser.get('%s%s' % (self.live_server_url, reverse_lazy("accounts:login")))
@@ -32,7 +30,7 @@ class CreateActiveTodoSeleniumTestCase(StaticLiveServerTestCase):
         self.assertEqual(int(active_todo_count), 1)
 
 
-class TodoActionSeleniumTestCase(StaticLiveServerTestCase):
+class TodoActionSeleniumTestCase(SeleniumScreenShotMixin, StaticLiveServerTestCase):
 
     def setUp(self):
         self.user = User.objects.create_user("todo_man", "todo@man.com", "ThiSk4Zu")
@@ -42,9 +40,6 @@ class TodoActionSeleniumTestCase(StaticLiveServerTestCase):
         self.active_todo_2 = Todo.objects.create(user=self.user, text="Call Batman")
         self.browser = webdriver.Firefox()
         self.browser.get(self.live_server_url)
-
-    def tearDown(self):
-        self.browser.quit()
 
     def login(self):
         self.browser.get('%s%s' % (self.live_server_url, reverse_lazy("accounts:login")))

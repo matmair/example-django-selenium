@@ -5,14 +5,11 @@ from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium import webdriver
 
 
-class UserRegistrationSeleniumTestCase(StaticLiveServerTestCase):
+class UserRegistrationSeleniumTestCase(SeleniumScreenShotMixin, StaticLiveServerTestCase):
 
     def setUp(self):
         self.browser = webdriver.Firefox()
         self.browser.get(self.live_server_url)
-
-    def tearDown(self):
-        self.browser.quit()
 
     def test_user_registration(self):
         self.browser.find_element_by_id("id-register").click()
@@ -23,11 +20,11 @@ class UserRegistrationSeleniumTestCase(StaticLiveServerTestCase):
         self.browser.find_element_by_id("id_password1").send_keys("Psiph5sK")
         self.browser.find_element_by_id("id_password2").send_keys("Psiph5sK")
 
-        self.browser.find_element_by_id("user-registration-submit").click()
+        self.browser.find_element_by_id("user-registration-submit2").click()
         self.assertEqual(username, self.browser.find_element_by_id("username-text").text)
 
 
-class UserLoginSeleniumTestCase(StaticLiveServerTestCase):
+class UserLoginSeleniumTestCase(SeleniumScreenShotMixin, StaticLiveServerTestCase):
 
     def setUp(self):
         self.browser = webdriver.Firefox()
