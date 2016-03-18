@@ -20,7 +20,7 @@ class UserRegistrationSeleniumTestCase(SeleniumScreenShotMixin, StaticLiveServer
         self.browser.find_element_by_id("id_password1").send_keys("Psiph5sK")
         self.browser.find_element_by_id("id_password2").send_keys("Psiph5sK")
 
-        self.browser.find_element_by_id("user-registration-submit2").click()
+        self.browser.find_element_by_id("user-registration-submit").click()
         self.assertEqual(username, self.browser.find_element_by_id("username-text").text)
 
 
