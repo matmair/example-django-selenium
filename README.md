@@ -11,7 +11,9 @@ An example Django project for selenium test implementation.
 
 Taking screenshots when any test case fail.
 
-###Video
+###Demo
+
+[mp4](https://github.com/erdem/django-selenium-example/blob/master/demo.mp4?raw=true)
 
 
 ###Install 
