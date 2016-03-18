@@ -20,6 +20,7 @@ class SeleniumScreenShotMixin():
 
     @property
     def failureException(self):
+        # http://stackoverflow.com/questions/12290336/how-to-execute-code-only-on-test-failures-with-python-unittest2
         class MyFailureException(AssertionError):
             def __init__(self_, *args, **kwargs):
                 screenshot_dir = 'reports/screenshots'
