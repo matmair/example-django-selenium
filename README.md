@@ -3,13 +3,13 @@
 An example Django project for selenium test implementation. 
 
 ### Test Case Scenarios
-* Test to verify user registration.
-* Test to verify user log in.
-* Create active todo object with a authenticated user.
-* Set a active todo to completed.
-* Set a completed todo to active. 
+* Verifies user registration.
+* Verifies user login.
+* Creates active todo object with an authenticated user.
+* Changes the status of todo objects from active to completed
+* Changes the status of todo objects from completed to active.
 
-Taking screenshots when any test case fail.
+Takes screenshots if any test case fail.
 
 ###Demo
 [http://quick.as/j90WtmOry](http://quick.as/j90WtmOry)
