@@ -31,7 +31,7 @@
     {% for todo in todos %}
         <div class="todo-item" id="todo-item-{{ todo.id }}">
             <span class="text">{{ todo.text }}</span>
-            <div class="todo-item-bottom" data-todo-item-id="{{ todo.id }}">
+            <div class="todo-item-bottom" data-todo-item-id="{{ todo.id }}" id="todo-complete-action-{{ todo.id }}">
                 <span class="complete-bar"><i class="glyphicon glyphicon-ok check-icon"></i> Completed</span>
             </div>
         </div>

@@ -16,9 +16,9 @@
 <div class="container todo-container">
     <div class="row">
         <div class="col-lg-12 header">
-            <h2 class="col-lg-6 modal-title">{% block header_title %} <a href="/" class="logo">Todos</a>{% endblock %}</h2>
+            <h2 class="col-lg-5 modal-title">{% block header_title %} <a href="/" class="logo">Todos</a>{% endblock %}</h2>
             {% if request.user.is_authenticated %}
-                <div class="col-lg-6 text-white profile-text text-right">
+                <div class="col-lg-7 text-white profile-text text-right">
                     Hello <strong id="username-text">{{ request.user }}</strong> - (<a href="{% url "accounts:logout" %}" class="text-white ">Logout</a>)</div>
             {% endif %}
         </div>
