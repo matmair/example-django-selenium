@@ -13,7 +13,7 @@ Taking screenshots when any test case fail.
 
 ###Demo
 
-http://quick.as/j90WtmOry
+[http://quick.as/j90WtmOry](http://quick.as/j90WtmOry){: target=_blank})
 
 
 ###Install 
