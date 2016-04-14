@@ -12,7 +12,7 @@ An example Django project for selenium test implementation.
 Takes screenshots if any test case fail.
 
 ###Demo
-![selenium-demo](http://i.imgur.com/5SAONTk.gifv)
+![selenium-demo](https://github.com/erdem/django-selenium-example/blob/master/demo.gif?raw=true)
 
 ###Install 
 

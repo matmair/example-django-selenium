@@ -6,4 +6,5 @@ class TodoAdmin(admin.ModelAdmin):
     list_display = ("user", "text", "done", "date_created")
     list_filter = ("done", "date_created")
 
+
 admin.site.register(Todo, TodoAdmin)
