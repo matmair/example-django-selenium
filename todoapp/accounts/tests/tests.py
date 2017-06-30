@@ -5,7 +5,7 @@ import os
 import sys
 import percy
 from selenium import webdriver
-
+from IPython import embed
 
 class UserRegistrationSeleniumTestCase(SeleniumScreenShotMixin, StaticLiveServerTestCase):
 
@@ -13,12 +13,14 @@ class UserRegistrationSeleniumTestCase(SeleniumScreenShotMixin, StaticLiveServer
         self.webdriver = webdriver.Chrome()
         self.webdriver.get(self.live_server_url)
 
-        root_static_dir = os.path.join(os.path.dirname(__file__), 'static')
+        root_static_dir = os.path.join(os.path.dirname(__file__), '../../', 'static')
+
         loader = percy.ResourceLoader(
           root_dir=root_static_dir,
           # Prepend `/assets` to all of the files in the static directory, to match production assets.
           # This is only needed if your static assets are served from a nested directory.
-          base_url='/assets',
+          base_url='/static/',
+
           webdriver=self.webdriver,
         )
 
@@ -37,6 +39,7 @@ class UserRegistrationSeleniumTestCase(SeleniumScreenShotMixin, StaticLiveServer
         self.webdriver.find_element_by_id("user-registration-submit").click()
         self.assertEqual(username, self.webdriver.find_element_by_id("username-text").text)
 
+        
         self.percy_runner.snapshot()
 
     def tearDown(self):
