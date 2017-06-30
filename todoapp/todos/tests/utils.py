@@ -12,7 +12,7 @@ class UserBaseSeleniumTestCase(SeleniumScreenShotMixin, StaticLiveServerTestCase
         self.user = User.objects.create_user("todo_man", "todo@man.com", "ThiSk4Zu")
         self.user.is_active = True
         self.user.save()
-        self.browser = webdriver.Firefox()
+        self.browser = webdriver.Chrome()
         self.browser.get(self.live_server_url)
 
     def login(self):

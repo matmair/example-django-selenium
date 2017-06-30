@@ -8,7 +8,7 @@ from selenium import webdriver
 class UserRegistrationSeleniumTestCase(SeleniumScreenShotMixin, StaticLiveServerTestCase):
 
     def setUp(self):
-        self.browser = webdriver.Firefox()
+        self.browser = webdriver.Chrome()
         self.browser.get(self.live_server_url)
 
     def test_user_registration(self):
@@ -27,7 +27,7 @@ class UserRegistrationSeleniumTestCase(SeleniumScreenShotMixin, StaticLiveServer
 class UserLoginSeleniumTestCase(SeleniumScreenShotMixin, StaticLiveServerTestCase):
 
     def setUp(self):
-        self.browser = webdriver.Firefox()
+        self.browser = webdriver.Chrome()
         self.browser.get(self.live_server_url)
         self.user = User.objects.create_user(username="newuser", password="NiGiw3Ch", email="todo@todoapp.com")
 
