@@ -17,6 +17,7 @@ Takes screenshots if any test case fail.
 ###Install 
 
     pip install -r requirements.txt
+    brew install chromedriver
 
 ###Usage
 
