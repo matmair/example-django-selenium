@@ -23,3 +23,17 @@ Takes screenshots if any test case fail.
 
 ### Demo
 ![selenium-demo](https://github.com/erdem/django-selenium-example/blob/master/demo.gif?raw=true)
+
+### Development of client
+
+```
+pip uninstall percy
+```
+
+And then when you `import percy`, add the path to your local copy of the client like so:
+
+```python
+import sys
+sys.path.append('path/to/python-percy-client')
+import percy
+```
