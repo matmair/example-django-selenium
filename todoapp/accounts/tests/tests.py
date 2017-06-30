@@ -1,7 +1,9 @@
 from accounts.tests.mixins import SeleniumScreenShotMixin
 from django.contrib.auth.models import User
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
-
+import os
+import sys
+import percy
 from selenium import webdriver
 
 
@@ -10,6 +12,18 @@ class UserRegistrationSeleniumTestCase(SeleniumScreenShotMixin, StaticLiveServer
     def setUp(self):
         self.webdriver = webdriver.Chrome()
         self.webdriver.get(self.live_server_url)
+
+        root_static_dir = os.path.join(os.path.dirname(__file__), 'static')
+        loader = percy.ResourceLoader(
+          root_dir=root_static_dir,
+          # Prepend `/assets` to all of the files in the static directory, to match production assets.
+          # This is only needed if your static assets are served from a nested directory.
+          base_url='/assets',
+          webdriver=self.webdriver,
+        )
+
+        self.percy_runner = percy.Runner(loader=loader)
+        self.percy_runner.initialize_build()
 
     def test_user_registration(self):
         self.webdriver.find_element_by_id("id-register").click()
@@ -22,6 +36,15 @@ class UserRegistrationSeleniumTestCase(SeleniumScreenShotMixin, StaticLiveServer
 
         self.webdriver.find_element_by_id("user-registration-submit").click()
         self.assertEqual(username, self.webdriver.find_element_by_id("username-text").text)
+
+        self.percy_runner.snapshot()
+
+    def tearDown(self):
+        if sys.exc_info()[0]:  # Returns the info of exception being handled
+            self.take_screenshot()
+        self.webdriver.quit()
+
+        self.percy_runner.finalize_build()
 
 
 class UserLoginSeleniumTestCase(SeleniumScreenShotMixin, StaticLiveServerTestCase):
