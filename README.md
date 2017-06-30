@@ -1,6 +1,6 @@
-## django-selenium-example
+## Percy Django Selenium Example App
 
-An example Django project for selenium test implementation. 
+An example Django project with selenium tests which are integrated with Percy.
 
 ### Test Case Scenarios
 * Verifies user registration.
@@ -11,15 +11,15 @@ An example Django project for selenium test implementation.
 
 Takes screenshots if any test case fail.
 
-###Demo
+### Demo
 ![selenium-demo](https://github.com/erdem/django-selenium-example/blob/master/demo.gif?raw=true)
 
-###Install 
+### Install 
 
     pip install -r requirements.txt
     brew install chromedriver
 
-###Usage
+### Usage
 
-    python manage.py test
+    PERCY_TOKEN=X PERCY_PROJECT=X/X python manage.py test
 
