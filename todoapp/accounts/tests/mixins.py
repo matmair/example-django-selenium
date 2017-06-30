@@ -8,7 +8,7 @@ class SeleniumScreenShotMixin(object):
 
     def take_screenshot(self):
         filename = self.get_filename()
-        self.browser.get_screenshot_as_file(filename)
+        self.webdriver.get_screenshot_as_file(filename)
 
     def get_filename(self):
         timestamp = datetime.now().isoformat().replace(':', '.')[:19]
@@ -22,4 +22,4 @@ class SeleniumScreenShotMixin(object):
     def tearDown(self):
         if sys.exc_info()[0]:  # Returns the info of exception being handled
             self.take_screenshot()
-        self.browser.quit()
+        self.webdriver.quit()

@@ -8,9 +8,9 @@ class CreateActiveTodoSeleniumTestCase(UserBaseSeleniumTestCase):
 
     def test_create_todo(self):
         self.login()
-        self.browser.find_element_by_id("add-todo-input").send_keys("Call Batman!")
-        self.browser.find_element_by_id("add-todo-form-submit").click()
-        active_todo_count = self.browser.find_element_by_id("id_todos_count").text
+        self.webdriver.find_element_by_id("add-todo-input").send_keys("Call Batman!")
+        self.webdriver.find_element_by_id("add-todo-form-submit").click()
+        active_todo_count = self.webdriver.find_element_by_id("id_todos_count").text
         self.assertEqual(int(active_todo_count), 1)
 
 
@@ -23,19 +23,19 @@ class TodoActionSeleniumTestCase(UserBaseSeleniumTestCase):
 
     def test_complete_todo_action(self):
         self.login()
-        active_todo_count = self.browser.find_element_by_id("id_todos_count").text
+        active_todo_count = self.webdriver.find_element_by_id("id_todos_count").text
         self.assertEqual(int(active_todo_count), 2)
 
-        self.browser.find_element_by_id("todo-complete-action-%s" % self.active_todo_1.id).click()
+        self.webdriver.find_element_by_id("todo-complete-action-%s" % self.active_todo_1.id).click()
 
-        self.browser.get('%s%s' % (self.live_server_url, reverse_lazy("todos:completed_list")))
+        self.webdriver.get('%s%s' % (self.live_server_url, reverse_lazy("todos:completed_list")))
         user_completed_todo_count = Todo.objects.filter(user=self.user, done=True).count()
-        todo_count_in_html_elem = self.browser.find_element_by_id("id_todos_count").text
+        todo_count_in_html_elem = self.webdriver.find_element_by_id("id_todos_count").text
         self.assertEqual(int(todo_count_in_html_elem), user_completed_todo_count)
 
         user_completed_todo = Todo.objects.filter(user=self.user, done=True).first()
-        self.browser.find_element_by_id("todo-active-action-%s" % user_completed_todo.id).click()
-        self.browser.get('%s%s' % (self.live_server_url, reverse_lazy("todos:active_list")))
+        self.webdriver.find_element_by_id("todo-active-action-%s" % user_completed_todo.id).click()
+        self.webdriver.get('%s%s' % (self.live_server_url, reverse_lazy("todos:active_list")))
         user_active_todo_count = Todo.objects.filter(user=self.user, done=False).count()
-        todo_count_in_html_elem = self.browser.find_element_by_id("id_todos_count").text
+        todo_count_in_html_elem = self.webdriver.find_element_by_id("id_todos_count").text
         self.assertEqual(int(todo_count_in_html_elem), user_active_todo_count)

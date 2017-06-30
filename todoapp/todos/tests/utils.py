@@ -12,11 +12,11 @@ class UserBaseSeleniumTestCase(SeleniumScreenShotMixin, StaticLiveServerTestCase
         self.user = User.objects.create_user("todo_man", "todo@man.com", "ThiSk4Zu")
         self.user.is_active = True
         self.user.save()
-        self.browser = webdriver.Chrome()
-        self.browser.get(self.live_server_url)
+        self.webdriver = webdriver.Chrome()
+        self.webdriver.get(self.live_server_url)
 
     def login(self):
-        self.browser.get('%s%s' % (self.live_server_url, reverse_lazy("accounts:login")))
-        self.browser.find_element_by_id("id_username").send_keys("todo_man")
-        self.browser.find_element_by_id("id_password").send_keys("ThiSk4Zu")
-        self.browser.find_element_by_id("user-login-submit").click()
+        self.webdriver.get('%s%s' % (self.live_server_url, reverse_lazy("accounts:login")))
+        self.webdriver.find_element_by_id("id_username").send_keys("todo_man")
+        self.webdriver.find_element_by_id("id_password").send_keys("ThiSk4Zu")
+        self.webdriver.find_element_by_id("user-login-submit").click()
