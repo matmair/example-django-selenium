@@ -20,6 +20,7 @@ Takes screenshots if any test case fail.
     brew install chromedriver
 
 ### Usage
-
+    
+    cd todoapp/
     PERCY_TOKEN=X PERCY_PROJECT=X/X python manage.py test
 
