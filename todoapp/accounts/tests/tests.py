@@ -3,9 +3,13 @@ from django.contrib.auth.models import User
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 import os
 import sys
-import percy
+
 from selenium import webdriver
 from IPython import embed
+
+# Uncomment for local development testing
+# sys.path.append('/Users/djones/Code/python-percy-client')
+import percy
 
 class UserRegistrationSeleniumTestCase(SeleniumScreenShotMixin, StaticLiveServerTestCase):
 
