@@ -2,15 +2,15 @@
 
 An example Django project with selenium tests which are integrated with Percy.
 
-### Install 
+### Install
 
     pip install -r requirements.txt
     brew install chromedriver
 
 ### Usage
-    
+
     cd todoapp/
-    PERCY_TOKEN=X PERCY_PROJECT=X/X python manage.py test
+    PERCY_TOKEN=X python manage.py test
 
 ### Test Case Scenarios
 * Verifies user registration.
