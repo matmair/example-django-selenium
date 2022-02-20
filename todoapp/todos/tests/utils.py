@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from django.urls import reverse_lazy
 
+from selenium.webdriver.chrome.options import Options
 from selenium import webdriver
 
 
@@ -12,6 +13,10 @@ class UserBaseSeleniumTestCase(SeleniumScreenShotMixin, StaticLiveServerTestCase
         self.user = User.objects.create_user("todo_man", "todo@man.com", "ThiSk4Zu")
         self.user.is_active = True
         self.user.save()
+
+        chrome_options = Options()
+        chrome_options.add_argument('--headless')
+        self.webdriver = webdriver.Chrome(options=chrome_options)
         self.webdriver = webdriver.Chrome()
         self.webdriver.get(self.live_server_url)
 

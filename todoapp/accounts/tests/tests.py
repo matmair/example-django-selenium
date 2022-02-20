@@ -5,7 +5,7 @@ import os
 import sys
 
 from selenium import webdriver
-from IPython import embed
+from selenium.webdriver.chrome.options import Options
 
 # Uncomment for local development testing
 # sys.path.append('/Users/djones/Code/python-percy-client')
@@ -14,7 +14,9 @@ import percy
 class UserRegistrationSeleniumTestCase(SeleniumScreenShotMixin, StaticLiveServerTestCase):
 
     def setUp(self):
-        self.webdriver = webdriver.Chrome()
+        chrome_options = Options()
+        chrome_options.add_argument('--headless')
+        self.webdriver = webdriver.Chrome(options=chrome_options)
         self.webdriver.get(self.live_server_url)
 
         root_static_dir = os.path.join(os.path.dirname(__file__), '../../', 'static')
@@ -57,6 +59,9 @@ class UserRegistrationSeleniumTestCase(SeleniumScreenShotMixin, StaticLiveServer
 class UserLoginSeleniumTestCase(SeleniumScreenShotMixin, StaticLiveServerTestCase):
 
     def setUp(self):
+        chrome_options = Options()
+        chrome_options.add_argument('--headless')
+        self.webdriver = webdriver.Chrome(options=chrome_options)
         self.webdriver = webdriver.Chrome()
         self.webdriver.get(self.live_server_url)
         self.user = User.objects.create_user(username="newuser", password="NiGiw3Ch", email="todo@todoapp.com")
