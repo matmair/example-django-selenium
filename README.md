@@ -21,9 +21,6 @@ An example Django project with selenium tests which are integrated with Percy.
 
 Takes screenshots if any test case fail.
 
-### Demo
-![selenium-demo](https://github.com/erdem/django-selenium-example/blob/master/demo.gif?raw=true)
-
 ### Development of client
 
 ```
