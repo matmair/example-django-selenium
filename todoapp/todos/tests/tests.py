@@ -1,4 +1,4 @@
-from django.core.urlresolvers import reverse_lazy
+from django.urls import reverse_lazy
 
 from todos.models import Todo
 from todos.tests.utils import UserBaseSeleniumTestCase

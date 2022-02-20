@@ -1,6 +1,6 @@
 from accounts.forms import UserRegistrationForm
 from django.contrib.auth import login, authenticate
-from django.core.urlresolvers import reverse_lazy
+from django.urls import reverse_lazy
 from django.views.generic import FormView
 
 

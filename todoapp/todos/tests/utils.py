@@ -1,7 +1,7 @@
 from accounts.tests.mixins import SeleniumScreenShotMixin
 from django.contrib.auth.models import User
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
-from django.core.urlresolvers import reverse_lazy
+from django.urls import reverse_lazy
 
 from selenium import webdriver
 
